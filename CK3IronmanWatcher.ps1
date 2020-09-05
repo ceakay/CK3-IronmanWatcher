@@ -4,7 +4,7 @@
 
 #Options - generally don't need to touch this. 
 $CK3SavePath = Join-Path $env:USERPROFILE -ChildPath 'Documents/Paradox Interactive/Crusader Kings III/save games/'
-$CK3BackupPath = Join-Path $env:USERPROFILE -ChildPath 'Documents/Paradox Interactive/Crusader Kings III/save games/Backups'
+$CK3BackupPath = Join-Path $env:USERPROFILE -ChildPath 'Documents/Paradox Interactive/Crusader Kings III/save games/Backups/'
 $CK3SaveFileType = '.ck3'
 #End Options
 
@@ -37,11 +37,13 @@ $CK3SaveWatcher.EnableRaisingEvents = $true
 
 #scriptblock for handler
 $Action = {
-    #Get
+    #Get Path and Name of changed file
     $Path = $Event.SourceEventArgs.FullPath
     $Name = $Event.SourceEventArgs.Name
     Write-Host "Detected autosave on $Name. Backup created."
+    #touch the backup file location to create any required folders and files.
     New-Item -ItemType File -Path $(Join-Path $CK3BackupPath -ChildPath $("$Name.$(Get-Date -Format yyMMdd)_$(Get-Date -Format HHmmss)")) -Force
+    #copy autosave and overwrite
     Copy-Item $Path -Destination $(Join-Path $CK3BackupPath -ChildPath $("$Name.$(Get-Date -Format yyMMdd)_$(Get-Date -Format HHmmss)")) -Force
 }
 
@@ -57,7 +59,7 @@ try {
         Wait-Event -Timeout 1
     } while ($true)
 } finally {
-    #Cleanup
+    #cleanup
     Unregister-Event -SourceIdentifier CK3Watcher
     $Handler | Remove-Job
     $CK3SaveWatcher.EnableRaisingEvents = $false
