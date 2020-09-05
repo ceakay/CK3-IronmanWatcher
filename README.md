@@ -4,7 +4,7 @@ Simple Powershell script to watch for when an autosave happens and creates a bac
 
 # Download
 
-https://github.com/ceakay/CK3-IronmanWatcher/releases/tag/1.0
+https://github.com/ceakay/CK3-IronmanWatcher/releases/download/1.0/CK3IronmanWatcher.exe
 
 Default settings in EXE:
 - Save Path: $env:USERPROFILE/Documents/Paradox Interactive/Crusader Kings III/save games/
