@@ -1,6 +1,6 @@
 # CK3-IronmanWatcher
 
-Simple Powershell script to watch for when an autosave happens and creates a backup. For Ironman save scumming.
+Simple Powershell script to watch for when an autosave happens and creates a backup. For Crusader Kings 3 Ironman save scumming.
 
 # Download
 
