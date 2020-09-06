@@ -22,7 +22,7 @@ EXE from powershell???
 - Compile the source yourself if you want. https://gallery.technet.microsoft.com/scriptcenter/PS2EXE-GUI-Convert-e7cb69d5
 
 Why not just monitor the whole folder and backup every save that happens? 
-- Sure, why not? I slapped the prompt in to ensure if Backup and Save path were changed to be identical, it won't go crazy with recursion. Comment out lines 10-26 to remove prompt and nothing bad will happen. 
+- CK3 Ironman creates a temporary save file first before deleting the old one and renaming the temporary file. This prevents saving those temporary files.
 
 # 1.0 
 - Release
